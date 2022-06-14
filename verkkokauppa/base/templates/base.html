@@ -1,0 +1,22 @@
+<! Headers for links to navigate the website (store/feedback/account)
+   Footers for relevant info links (location/contact info/opening and closing times) >
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+<! FAVICON >
+    <header>
+        <title>Verkkokauppa</title>
+            <a href="{% url 'home-page' %}">Home</a>
+    {% if title %}
+    <title>Django Blog - {{ title }}</title>
+    {% else %}
+    <title>Django Blog</title>
+    {% endif %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>
