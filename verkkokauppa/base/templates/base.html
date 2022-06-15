@@ -8,12 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 <! FAVICON >
     <header>
-        <title>Verkkokauppa</title>
-            <a href="{% url 'home-page' %}">Home</a>
+        <a href="{% url 'home-page' %}">Home</a>
+        <a href="{% url 'store-page' %}">Store</a>
+        <a href="{% url 'about-page' %}">About us</a>
+        <a href="{% url 'account-page' %}">My account</a>
+        <a href="{% url 'contact-page' %}">Contact us</a>
     {% if title %}
-    <title>Django Blog - {{ title }}</title>
+    <title>Verkkokauppa - {{ title }}</title>
     {% else %}
-    <title>Django Blog</title>
+    <title>Verkkokauppa</title>
     {% endif %}
 </head>
 <body>
