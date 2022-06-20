@@ -57,3 +57,9 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 #TODO Make a page for products (accessible from store page through categories)
+def products(request):
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, 'product.html', context)
