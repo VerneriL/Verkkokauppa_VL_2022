@@ -31,7 +31,7 @@ def store(request):
     # Shows categories (Need product page)
     context = {
         'title': 'Store',
-        'categories': categories
+        'categories': categories,
     }
     return render(request, 'store.html', context)
 
@@ -57,8 +57,9 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 #TODO Make a page for products (accessible from store page through categories)
-def products(request):
-    products = Product.objects.all()
+def products(request, category_id):
+    products_id = Product.objects.filter(product_category=category_id)
+    products = products_id.all()
     context = {
         'products': products
     }

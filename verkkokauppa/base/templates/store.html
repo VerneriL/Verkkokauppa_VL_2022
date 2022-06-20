@@ -4,5 +4,8 @@
     <h1>STORE PAGE!</h1>
     {% for category in categories %}
         <h2>Category: {{ category }}</h2>
+        <br>
+<! Make a link to products based on categories! >
+        <a href="{% url 'product-page' category.id %}">{{ category }}</a>
     {% endfor %}
 {% endblock content %}
