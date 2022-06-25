@@ -2,27 +2,13 @@ from django.shortcuts import render
 
 from .models import Categories, Product
 
-# Test data (ignore for now)
-posts = [
-    {
-        'author': 'Me',
-        'title': 'Blog Post 1',
-        'content': 'First post content',
-        'date_posted': 'August 27, 2018'
-    },
-    {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
-        'content': 'Second post content',
-        'date_posted': 'August 28, 2018'
-    }    
-]
+
 # Home page for the store
 def home(request):
     context = {
-        'posts': posts
+        'title': '',      
     }
-    return render(request, 'home.html', context)
+    return render(request, 'base/home.html', context)
 
 # Store page
 def store(request):
@@ -33,28 +19,28 @@ def store(request):
         'title': 'Store',
         'categories': categories,
     }
-    return render(request, 'store.html', context)
+    return render(request, 'base/store.html', context)
 
 # About page
 def about(request):
     context = {
         'title': 'About',
     }    
-    return render(request, 'about.html', context)
+    return render(request, 'base/about.html', context)
 
 # Profile page (eventually)
 def account(request):
     context = {
         'title': 'Account',
     }    
-    return render(request, 'account.html', context)
+    return render(request, 'base/account.html', context)
 
 # Contact us page (in a way connected to account)
 def contact(request):
     context = {
         'title': 'Contact us',
     }        
-    return render(request, 'contact.html', context)
+    return render(request, 'base/contact.html', context)
 
 #TODO Make a page for products (accessible from store page through categories)
 def products(request, category_id):
@@ -63,4 +49,4 @@ def products(request, category_id):
     context = {
         'products': products
     }
-    return render(request, 'product.html', context)
+    return render(request, 'base/product.html', context)

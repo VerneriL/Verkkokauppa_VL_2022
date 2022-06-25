@@ -1,6 +1,6 @@
 from django.db import models
 
-
+# Categories for products
 class Categories(models.Model):
     product_category = models.CharField(max_length=100)
     
@@ -8,13 +8,15 @@ class Categories(models.Model):
         return self.product_category
 
 
+# Products
 class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
 # Maybe add a picture of the product
-# Add a category of products
     product_category = models.ForeignKey(Categories, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
 
+
+# Home-page text

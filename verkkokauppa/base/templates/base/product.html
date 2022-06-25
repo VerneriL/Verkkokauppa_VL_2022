@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
 {% block content %}
 <! Code here! >
-    <h1>PRODUCT /{{ products.product_category}}\ PAGE!<h1>
+    <h1>PRODUCT ---{{ products.first.product_category }}--- PAGE!<h1>
     {% for product in products %}
     <ul>
         <li>Product is: {{ product }}<br>Price is: {{ product.price }}<br>Category is: {{ product.product_category}}
