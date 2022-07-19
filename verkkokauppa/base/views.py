@@ -35,12 +35,6 @@ def account(request):
     }    
     return render(request, 'base/account.html', context)
 
-# Contact us page (in a way connected to account)
-def contact(request):
-    context = {
-        'title': 'Contact us',
-    }        
-    return render(request, 'base/contact.html', context)
 
 #TODO Make a page for products (accessible from store page through categories)
 def products(request, category_id):

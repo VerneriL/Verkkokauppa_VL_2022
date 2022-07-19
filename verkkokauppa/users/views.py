@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm, UserUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, FeedBackForm
 
 
 
@@ -44,3 +44,20 @@ def update(request):
         'u_form': u_form
     }
     return render(request, 'users/update.html', context)
+
+
+@login_required
+def contact(request):
+    if request.method == 'POST':
+        feedback_form = FeedBackForm(request.POST)
+        if feedback_form.is_valid():
+            feedback_form.save()
+            messages.success(request, f'Thank you for your feedback!')
+            return redirect('profile-page')
+    else:
+        feedback_form = FeedBackForm()
+    context = {
+        'title': 'Contact us',
+        'feedback_form': feedback_form,
+    }        
+    return render(request, 'users/contact.html', context)

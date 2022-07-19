@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
+from users.models import FeedBack
+
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -24,3 +26,13 @@ class UserUpdateForm(forms.ModelForm):
             'username',
             'email',
         ]
+
+
+class FeedBackForm(forms.ModelForm):
+
+    class Meta:
+        model = FeedBack
+        fields = ('fb_field',)
+        labels = {
+            'fb_field': '',
+        }

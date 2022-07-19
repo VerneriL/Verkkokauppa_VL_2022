@@ -1,0 +1,17 @@
+{% extends "base/base.html" %}
+{% block content %}
+<! Code here
+Page to send feedback etc. Maybe to email? Should require to be registered and logged in.
+>
+  <h1>CONTACT US PAGE!</h1>
+    <div>
+      <form action=method.POST>
+        <h2>Leave your feedback</h2>
+        {% csrf_token %}
+        <div>
+          {{ feedback_form }}    
+        </div>
+        <input type="submit" value="Send">
+      </form>
+    </div>
+{% endblock content %}
