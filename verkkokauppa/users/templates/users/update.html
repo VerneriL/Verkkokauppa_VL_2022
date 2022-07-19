@@ -1,0 +1,16 @@
+{% extends "base/base.html" %}
+{% block content %}
+    <div>
+      <h1>My username: {{ user.username }}</h1>
+      <h1>My email: {{ user.email }}</h1>
+    </div>
+    <div>
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend class="mb-4">Profile Info</legend>
+            {{ u_form.as_p }}
+        </fieldset>
+        <button type="submit">Update</button>
+      </form>
+{% endblock content %}
