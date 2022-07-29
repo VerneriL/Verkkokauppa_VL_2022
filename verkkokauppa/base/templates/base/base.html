@@ -1,35 +1,36 @@
 <! Headers for links to navigate the website (store/feedback/account)
    Footers for relevant info links (location/contact info/opening and closing times) >
-{% load static %}
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html>
+
 <head>
-    
-    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
-<! FAVICON >
-    <header>
-        <div>
-          <nav>
-                <a href="{% url 'home-page' %}">Home</a>
-                <a href="{% url 'store-page' %}">Store</a>
-                <a href="{% url 'about-page' %}">About us</a>
-                <a href="{% url 'contact-page' %}">Contact us</a>
-                {%  if user.is_authenticated %}
-                  <a href="{% url 'profile-page' %}">My Profile</a>          
-                  <a href="{% url 'logout-page' %}">Logout</a> 
-                {% else %}
-                  <a href="{% url 'login-page' %}">Log In</a>                
-                  <a href="{% url 'register-page' %}">Sign In</a>
-                {% endif %}
-          </nav>
-        </div>
-    {% if title %}
-      <title>Verkkokauppa - {{ title }}</title>
-    {% else %}
-      <title>Verkkokauppa</title>
-    {% endif %}
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
+
 <body>
+  <header>
+  {% if title %}
+    <title>Verkkokauppa - {{ title }}</title>
+  {% else %}
+    <title>Verkkokauppa</title>
+  {% endif %}  
+    <nav>
+      <ul>
+        <li><a href="{% url 'home-page' %}">Home</a></li>
+        <li><a href="{% url 'store-page' %}">Store</a></li>
+        <li><a href="{% url 'about-page' %}">About us</a></li>
+        <li><a href="{% url 'contact-page' %}">Contact us</a></li>
+        {%  if user.is_authenticated %}
+          <li><a href="{% url 'profile-page' %}">My Profile</a></li>       
+          <li><a href="{% url 'logout-page' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'login-page' %}">Log In</a></li>          
+          <li><a href="{% url 'register-page' %}">Sign In</a></li>
+      {% endif %}
+      </ul>
+    </nav>
+  </header>
     {% if messages %}
         {% for message in messages %}
           <h3>{{ message }}</h3>
