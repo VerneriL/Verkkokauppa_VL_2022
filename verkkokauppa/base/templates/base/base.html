@@ -6,15 +6,15 @@
 <head>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
-</head>
-
-<body>
-  <header>
   {% if title %}
     <title>Verkkokauppa - {{ title }}</title>
   {% else %}
     <title>Verkkokauppa</title>
-  {% endif %}  
+  {% endif %} 
+</head>
+
+<body>
+  <header> 
     <nav>
       <ul>
         <li><a href="{% url 'home-page' %}">Home</a></li>
@@ -37,5 +37,24 @@
         {% endfor %}
     {% endif %}
     {% block content %}{% endblock %}
+  <footer>
+    <div>
+      <h5>Opening times</h5>      
+      <ul class="footer-times">
+        <li>Ma: 08:00-21:00
+        <li>Ti: 08:00-21:00
+        <li>Ke: 08:00-21:00
+        <li>To: 08:00-21:00
+        <li>Pe: 08:00-21:00
+        <li>La-Su: 10:00-18:00
+      </ul>
+    </div>
+    <div>
+      <ul class="footer-info">
+        <li>Company name
+        <li>Company email
+      </ul>
+    </div>
+  </footer>
 </body>
 </html>

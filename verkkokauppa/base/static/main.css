@@ -1,19 +1,18 @@
 /* MAIN CSS FILE */
 
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 
 /* HEADER */
-
-
 header {
     display: flex;
     background-color: #333;
     color: white;
-    margin-top: 0px;
     padding: 30px;
+    margin-bottom: 10px;
+    align-items: center;
 }
 
 nav a{
@@ -22,9 +21,28 @@ nav a{
     text-decoration: none;
 }
 
+nav ul {
+    list-style-type: none;
+}
+
+/* FOOTER */
+footer {
+    background-color: #333;
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-times {
+    padding: 1px;
+    font-size: small;
+}
+
 /* BODY */
 body {
     background: #fafafa;
     color: #333;
-    margin-top: 5rem;
+    height: 100%;
 }
+
