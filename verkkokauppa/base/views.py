@@ -41,6 +41,7 @@ def products(request, category_id):
     products_id = Product.objects.filter(product_category=category_id)
     products = products_id.all()
     context = {
-        'products': products
+        'title': 'Store/Cats',
+        'products': products,
     }
     return render(request, 'base/product.html', context)

@@ -4,7 +4,12 @@
     <h1>PRODUCT ---{{ products.first.product_category }}--- PAGE!<h1>
     {% for product in products %}
     <ul>
-        <li>Product is: {{ product }}<br>Price is: {{ product.price }}<br>Category is: {{ product.product_category}}
+        <li>Product: {{ product }}
+            <br>Price: {{ product.price }}
+            <br>Breed: {{ product.product_category}}
+            <p>
+            <br>Description: {{ product.description }}
+            </p>
     </ul>
     {% endfor %}
 {% endblock content %}
