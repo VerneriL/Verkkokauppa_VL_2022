@@ -1,16 +1,25 @@
 {% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+
 {% block content %}
     <div>
       <h1>My username: {{ user.username }}</h1>
-      <h1>My email: {{ user.email }}</h1>
+      <h1>My email: 
+        {% if user.email %}
+          {{ user.email }}
+        {% else %}
+          -
+        {% endif %}
+      </h1>
     </div>
     <div>
       <form method="POST">
         {% csrf_token %}
         <fieldset>
             <legend class="mb-4">Profile Info</legend>
-            {{ u_form.as_p }}
+            {{ u_form|crispy }}
         </fieldset>
-        <button type="submit">Update</button>
+        <button class="btn btn-outline-success" type="submit">Update</button>
       </form>
+      <a class="btn btn-warning" href="{% url 'profile-page' %}">Cancel</a></button>
 {% endblock content %}
