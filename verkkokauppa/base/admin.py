@@ -4,8 +4,11 @@ from .models import Categories, Product
 
 # Register your models here.
 class ProductAdmin(admin.ModelAdmin):
-    fields = ["name", "price", "product_category"]
+    fields = ["name", "price", "product_category", "description"]
 
 admin.site.register(Product, ProductAdmin)
 
+
+class CategoriesAdmin(admin.ModelAdmin):
+    fields = ["categories", "description"]
 admin.site.register(Categories)
