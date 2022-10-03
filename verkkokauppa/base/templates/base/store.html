@@ -1,15 +1,26 @@
 {% extends "base/base.html" %}
 {% block content %}
-<! Code here! >
-    <h1>STORE PAGE!</h1>
-    {% if categories %}
+    <h1>MyCompany Store</h1>
+    <br/>
+    <h3>
+        Here you can select from our wonderful breeds!
+    </h3>
+    <br/>
+    <h4>Breeds:</h4>
+    <div class="s-rem">
+    {% if categories %}       
         {% for category in categories %}
-            <h2>Category: {{ category }}</h2>
-            <br>
-<! Make a link to products based on categories! >
             <a href="{% url 'product-page' category.id %}">{{ category }}</a>
+            <br>
+            {% if category.description %}
+                {{ category.description }}
+            {% else %}
+                No description available.
+            {% endif %}
+            <br>
         {% endfor %}
     {% else %}
         <h2>Nothing to show!</h2>
     {% endif %}
+    </div>
 {% endblock content %}

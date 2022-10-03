@@ -1,17 +1,15 @@
 {% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+
 {% block content %}
-<! Code here
-Page to send feedback etc. Maybe to email? Should require to be registered and logged in.
->
-  <h1>CONTACT US PAGE!</h1>
+  <h2>You can contact us here</h2>
     <div>
-      <form action=method.POST>
-        <h2>Leave your feedback</h2>
+      <form class="s-rem" action=method.POST>
+        <h4>Have questions regarding our online store or your experiences with us?<br/>
+        You can ask them here!</h4>
         {% csrf_token %}
-        <div>
-          {{ feedback_form }}    
-        </div>
-        <input type="submit" value="Send">
+          {{ feedback_form|crispy }}
+        <button class="btn btn-outline-success" type="submit">Send</button>
       </form>
     </div>
 {% endblock content %}

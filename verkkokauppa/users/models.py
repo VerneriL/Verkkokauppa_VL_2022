@@ -10,6 +10,8 @@ class Profile(models.Model):
 
 
 class FeedBack(models.Model):
+    name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=100)
     fb_field = models.TextField(max_length=1000)
 
     def __str__(self):

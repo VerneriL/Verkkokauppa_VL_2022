@@ -1,18 +1,19 @@
 {% extends "base/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 <! Code here! >
     <div>
-        <form method="POST">
+        <form style="background: #ececec; color: black;" method="POST">
             {% csrf_token %}
             <fieldset>
                 <legend class="mb-4">Join Today!</legend>
-                {{ form.as_p }}
+                {{ form|crispy }}
             </fieldset>
-        <button type="submit">Sign Up!</button>
+        <button class="btn btn-outline-success" type="submit">Sign Up!</button>
         </form>
         <div class="pt-3">
             <small>
-                Already have an account? <a href="{% url 'login-page' %}">Sign In</a>
+                Already have an account? <a href="{% url 'login-page' %}">Sign In!</a>
             </small>
         </div>
     </div>
