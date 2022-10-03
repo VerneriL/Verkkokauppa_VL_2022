@@ -1,1 +1,14 @@
 /* MAIN CSS FILE */
+
+.s-rem {
+    padding: 1rem;
+}
+
+.form-light {
+    background: #ececec; 
+    color: black;
+}
+
+.indent {
+    text-indent: 30px;
+}

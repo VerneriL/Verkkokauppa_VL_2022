@@ -33,7 +33,12 @@ class FeedBackForm(forms.ModelForm):
 
     class Meta:
         model = FeedBack
-        fields = ('fb_field',)
+        fields = ('name', 'email', 'fb_field',)
         labels = {
-            'fb_field': '',
+            'name': 'Name',
+            'email': 'E-mail',
+            'fb_field': 'Feedback',
+        }
+        widgets = {
+            'fb_field': forms.Textarea(attrs={'style': 'resize: none;'})
         }

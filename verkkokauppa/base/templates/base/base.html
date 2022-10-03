@@ -6,7 +6,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'main.css'%}"> 
   
   {% if title %}
     <title>MyCompany - {{ title }}</title>
@@ -19,14 +20,19 @@
   <header> 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
       <a class="navbar-brand" href="{% url 'home-page' %}">MyCompany</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" 
+              type="button" 
+              data-toggle="collapse" 
+              data-target="#navbarSupportedContent" 
+              aria-controls="navbarSupportedContent" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
       </button>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="nav navbar-nav mr-auto nav-tabs">
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'home-page' %}">Home</a>
+            <a class="nav-link" href="{% url 'home-page' %}">Home</a><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'store-page' %}">Store</a>
@@ -36,22 +42,22 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'contact-page' %}">Contact us</a>
-          </li class="nav-item">
+          </li>
         </ul>
-        <ul class="navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right nav-tabs">
           {%  if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'profile-page' %}">My Profile</a>
             </li>       
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout-page' %}">Logout</a>
+              <a class="nav-link" href="{% url 'logout-page' %}">Log out</a>
             </li>
           {% else %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'login-page' %}">Log In</a>
             </li>          
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'register-page' %}">Sign In</a>
+              <a class="nav-link" href="{% url 'register-page' %}">Sign Up</a>
             </li>
         </ul>
         {% endif %}
@@ -64,7 +70,7 @@
           <h3>{{ message }}</h3>
         {% endfor %}
     {% endif %}
-    <div class="container">
+    <div class="container border-left border-secondary bg-light">
       {% block content %}{% endblock %}
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
