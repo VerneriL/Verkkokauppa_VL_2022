@@ -8,7 +8,7 @@
         <h2>Leave your feedback</h2>
         {% csrf_token %}
           {{ feedback_form|crispy }}
-        <input type="submit" value="Send">
+        <button class="btn btn-outline-success" type="submit">Send</button>
       </form>
     </div>
 {% endblock content %}
