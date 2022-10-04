@@ -1,11 +1,11 @@
 {% extends "base/base.html" %}
 {% block content %}
 <! Code here! >
-    <h2>You have been logged out!
+    <div class="alert alert-{{ message.tags }}">{{ message.success }}</div>
     <div class="pt-3">
-        <small>
-            <a href="{% url 'login-page' %}">Log back in</a>
-        </small>
+        <p>
+            <a class="btn btn-primary" href="{% url 'login-page' %}">Log back in</a>
+        </p>
     </div>
 
 {% endblock content %}

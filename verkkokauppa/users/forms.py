@@ -36,6 +36,7 @@ class ProfileUpdateForm(forms.ModelForm):
             'image'
         ]
 
+
 class FeedBackForm(forms.ModelForm):
 
     class Meta:
