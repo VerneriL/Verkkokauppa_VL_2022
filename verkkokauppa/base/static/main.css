@@ -12,3 +12,9 @@
 .indent {
     text-indent: 30px;
 }
+
+.map {
+    height: 300px;
+    width: 350px;
+    float: right;
+}

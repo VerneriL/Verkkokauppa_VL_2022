@@ -1,14 +1,16 @@
 {% extends "base/base.html" %}
 {% block content %}
-<! Code here! 
-Info of the store (more detailed than footer, location on map, made-up history etc)
->
+
+<head>
+
+</head>
 <h1>MyCompany</h1>
 <div class="s-rem">
   <p>
     Brief introduction of what the company does.
   </p>
-  <br>
+  <br/>
+  <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2550752.666646006!2d24.497833897846718!3d-76.07139178836894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfi!2sfi!4v1664991605962!5m2!1sfi!2sfi" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   <div class="border border-left-0">
     <p>We're located in:<br>
       Somestreet 123<br>
@@ -20,7 +22,17 @@ Info of the store (more detailed than footer, location on map, made-up history e
       Sat: 10:00-18:00<br>
       Sun: Closed. 
     </p>
-    <p class="text-right">MAP-HERE</p>
+    <p>
+      You can contact us through our <a href="{% url 'contact-page' %}">contact form</a> or send a text to our service number.
+      <br/>
+    </p>
+    <p>
+      Puh: 012 345 6789
+    </p>
+    <p class="text-right s-rem">  
+    Location on map
+    </p>
   </div>
-</div>    
+</div>
+
 {% endblock content %}
