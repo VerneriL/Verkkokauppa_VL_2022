@@ -1,5 +1,6 @@
 <! HTML For front page of the store. Possibly showing items on SALE, AD:s and news. >
 {% extends "base/base.html" %}
+{% load static %}
 {% block content %}
 <! Code here! >
 <h1>Welcome to MyCompany!</h1>
@@ -14,6 +15,10 @@
         Proin varius felis nunc, eget hendrerit nisl pharetra sed. Etiam egestas augue sit amet lacus ultrices sollicitudin.
     Nunc quis placerat urna, sed tempor nisl. Quisque auctor eleifend pellentesque. Etiam eu velit lectus. Vestibulum fermentum odio pretium massa luctus sagittis.
     Ut tortor urna, mattis nec dolor nec, pharetra pellentesque velit. Vivamus eget scelerisque elit. Morbi ac nisi pharetra, malesuada turpis nec, viverra urna.
+  </p>
+  <p class="text-right border">
+    Today's special offer!
+  <img src="{% static 'maine_coon_2.jpg'%}">
   </p>
 </div>
 {% endblock content %}
