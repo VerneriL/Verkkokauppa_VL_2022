@@ -16,8 +16,10 @@ class Categories(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
+    age = models.CharField(max_length=30, default="Not specified.")
     description = models.TextField(max_length=500, blank=True, null=True)
-# Maybe add a picture of the product
+    image = models.ImageField(default='default_no_image.png', upload_to='product_images')
+
     product_category = models.ForeignKey(Categories, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
