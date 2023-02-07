@@ -11,7 +11,7 @@
 
   {% if categories %}       
     {% for category in categories %}
-    <div class="border border-success">
+    <div>
       <a href="{% url 'product-page' category.id %}">
       <img src="{{ category.image.url }}">
       </a>
