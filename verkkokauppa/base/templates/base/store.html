@@ -8,12 +8,13 @@
 <br/>
 <h4>Breeds:</h4>
 <div class="s-rem">
-
+    <!-- Loop through categories and display each one-->
   {% if categories %}       
     {% for category in categories %}
     <div>
       <a href="{% url 'product-page' category.id %}">
-      <img src="{{ category.image.url }}">
+      <!--Show category pic from category db table as url-->
+        <img src="{{ category.image.url }}">
       </a>
       <a href="{% url 'product-page' category.id %}"><p>{{ category }}</p></a>
       <p>{{ category.description }}</p>
@@ -23,7 +24,5 @@
   {% else %}
         <p>Nothing to show!</p>
   {% endif %}
-    </div>
-</div>
 </div>
 {% endblock content %}
