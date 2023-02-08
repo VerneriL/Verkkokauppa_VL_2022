@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Categories, Product
 
@@ -28,7 +30,7 @@ def about(request):
     }    
     return render(request, 'base/about.html', context)
 
-# Profile page (eventually)
+# Profile page
 def account(request):
     context = {
         'title': 'Account',
@@ -36,12 +38,23 @@ def account(request):
     return render(request, 'base/account.html', context)
 
 
-#TODO Make a page for products (accessible from store page through categories)
 def products(request, category_id):
+    # Get category id from database based on given parameter
     products_id = Product.objects.filter(product_category=category_id)
+    # Get all products of the same category
     products = products_id.all()
     context = {
         'title': 'Store/Cats',
         'products': products,
     }
     return render(request, 'base/product.html', context)
+
+#TODO: Create add to cart functionality
+@login_required
+def add_to_cart(request):
+    messages.success(request, "Added to cart")
+
+#TODO: Create remove from cart functionality
+@login_required
+def remove_from_cart(request):
+    messages.success(request, "Removed from cart")
