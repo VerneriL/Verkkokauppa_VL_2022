@@ -18,3 +18,12 @@
     width: 350px;
     float: right;
 }
+
+.add-to-cart:hover {
+    background-color: grey;
+}
+
+.product-description {
+    font-family: serif, sans-serif;
+    font-size: 18px;
+}
