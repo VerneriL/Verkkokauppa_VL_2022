@@ -14,11 +14,12 @@
   {% endif %}
 </h3>
 <br/>
-<form class="border form-light s-rem" method="POST">
+<form class="border form-light s-rem" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <fieldset>
       <legend class="mb-4">Profile Info</legend>
       {{ u_form|crispy }}
+      {{ p_form|crispy }}
   </fieldset>
   <button class="btn btn-outline-success" type="submit">Update</button>
 </form>

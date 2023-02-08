@@ -3,10 +3,12 @@
 <! Code here! >
     <h1>PRODUCT ---{{ products.first.product_category }}--- PAGE!<h1>
     {% for product in products %}
+    <img src="{{ product.image.url }}">
     <ul>
-        <li>Product: {{ product }}
-            <br>Price: {{ product.price }}
-            <br>Breed: {{ product.product_category}}
+        <li>Name: {{ product }}
+            <br>Price: {{ product.price|floatformat:2 }} €
+            <br>Breed: {{ product.product_category }}
+            <br>Age: {{ product.age }}
             <p>
             <br>Description: {{ product.description }}
             </p>
