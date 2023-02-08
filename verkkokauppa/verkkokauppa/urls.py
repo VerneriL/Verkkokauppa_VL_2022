@@ -32,6 +32,7 @@ urlpatterns = [
     path('profile/update/', user_views.update, name='update-page'),
     path('contact_us/', user_views.contact, name='contact-page'),
     path('shopping-cart/', cart_views.shopping_cart, name='shopping-cart-page'),
+    path('payment/', cart_views.payment_view, name='payment-page'),
     path('', include('base.urls')),
 ]
 
