@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.dispatch import receiver
 from .models import Profile
 
+# Signals when a button is pressed for a given form
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
