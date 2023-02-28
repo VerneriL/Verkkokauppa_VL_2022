@@ -28,7 +28,6 @@
               aria-expanded="false" 
               aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
       </button>
-      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="nav navbar-nav mr-auto nav-tabs">
           <li class="nav-item">
@@ -61,10 +60,10 @@
             </li>
         </ul>
         {% endif %}
-
       </div>
     </nav>
   </header>
+  <!--Signal messages-->
     {% if messages %}
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }}">
@@ -72,9 +71,11 @@
           </div>
         {% endfor %}
     {% endif %}
-    <div class="container border-left border-secondary bg-light">
+    <!--Start of content block for other pages-->
+    <div class="container border-left border-secondary bg-light content-block page-body">
       {% block content %}{% endblock %}
     </div>
+    <!--End of content block-->
     <footer class="text-center text-lg-start bg-light text-muted page-footer">
       Favicon and stock photos from: <a href="https://pixabay.com/"> pixabay</a>
     </footer>
