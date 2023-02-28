@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 from users import views as user_views
+from cart import views as cart_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout-page'),
     path('profile/update/', user_views.update, name='update-page'),
     path('contact_us/', user_views.contact, name='contact-page'),
+    path('shopping-cart/', cart_views.shopping_cart, name='shopping-cart-page'),
+    path('payment/', cart_views.payment_view, name='payment-page'),
     path('', include('base.urls')),
 ]
 

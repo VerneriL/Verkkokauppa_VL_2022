@@ -28,7 +28,7 @@ def about(request):
     }    
     return render(request, 'base/about.html', context)
 
-# Profile page (eventually)
+# Profile page
 def account(request):
     context = {
         'title': 'Account',
@@ -36,9 +36,10 @@ def account(request):
     return render(request, 'base/account.html', context)
 
 
-#TODO Make a page for products (accessible from store page through categories)
 def products(request, category_id):
+    # Get category id from database based on given parameter
     products_id = Product.objects.filter(product_category=category_id)
+    # Get all products of the same category
     products = products_id.all()
     context = {
         'title': 'Store/Cats',

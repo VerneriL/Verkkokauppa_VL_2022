@@ -1,17 +1,22 @@
 {% extends "base/base.html" %}
 {% block content %}
-<! Code here! >
-    <h1>PRODUCT ---{{ products.first.product_category }}--- PAGE!<h1>
-    {% for product in products %}
-    <img src="{{ product.image.url }}">
-    <ul>
-        <li>Name: {{ product }}
-            <br>Price: {{ product.price|floatformat:2 }} €
+
+<h1>{{ products.first.product_category }}<h1>
+  {% for product in products %}
+    <div class="s-rem">
+      <img src="{{ product.image.url }}">
+        <div class="product-description">
+            Name: {{ product }}
+            <br>
+            Price: {{ product.price|floatformat:2 }} €
             <br>Breed: {{ product.product_category }}
             <br>Age: {{ product.age }}
             <p>
-            <br>Description: {{ product.description }}
+            <br>    
+            Description: {{ product.description }}
             </p>
-    </ul>
+            <button type="submit" class="add-to-cart">Add to cart</button>
+        </div>
+    </div>
     {% endfor %}
 {% endblock content %}
