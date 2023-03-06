@@ -33,6 +33,7 @@ urlpatterns = [
     path('contact_us/', user_views.contact, name='contact-page'),
     path('shopping-cart/', cart_views.shopping_cart, name='shopping-cart-page'),
     path('payment/', cart_views.payment_view, name='payment-page'),
+    path('add-to-cart/<int:id>', cart_views.add_to_cart, name="add_to_cart"),
     path('', include('base.urls')),
 ]
 
