@@ -1,8 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import PaymentForm
+from django.urls import reverse
 
+from .forms import PaymentForm
+from users.models import Profile
+from base.models import Product
+from .models import ShoppingCartItem, ShoppingCartOrder
+
+import random
+import string
+from datetime import date
+import datetime
 
 def generate_order_id():
     date_string = date.today().strftime('%Y%m%d')[2:] + str(datetime.datetime.now().second)
