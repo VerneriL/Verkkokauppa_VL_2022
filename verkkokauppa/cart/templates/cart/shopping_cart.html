@@ -3,4 +3,10 @@
 
 {% block content %}
     <h1>Shopping-cart page</h1>
+
+    <h2>{{items_in_cart}}<h2>
+    {% for item in items_in_cart %}
+        {{item}}
+
+    {% endfor %}
 {% endblock content %}
