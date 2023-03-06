@@ -11,7 +11,7 @@
     <!-- Loop through categories and display each one-->
   {% if categories %}       
     {% for category in categories %}
-    <div>
+    <div class="card">
       <a href="{% url 'product-page' category.id %}">
       <!--Show category pic from category db table as url-->
         <img src="{{ category.image.url }}">
@@ -20,6 +20,7 @@
       <p>{{ category.description }}</p>
     </div>
     <br>
+    <a href="{% url 'add_to_cart' category.id %}" class="btn">Add to cart</button>
     {% endfor %}
   {% else %}
         <p>Nothing to show!</p>
