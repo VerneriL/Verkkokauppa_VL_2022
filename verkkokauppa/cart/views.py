@@ -65,5 +65,9 @@ def add_to_cart(request, **kwargs):
 
 #TODO: Create remove from cart functionality
 @login_required
-def remove_from_cart(request):
-    messages.success(request, "Removed from cart")
+def remove_from_cart(request, id):
+    remove_item = ShoppingCartItem.objects.filter(id=id)
+    if remove_item.exists():
+        remove_item[0].delete()
+        messages.success(request, "Removed from cart")
+    return redirect(reverse('shopping-cart'))
