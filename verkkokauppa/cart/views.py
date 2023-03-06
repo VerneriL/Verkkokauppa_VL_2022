@@ -9,10 +9,21 @@ def generate_order_id():
     random_string = "".join([random.choice(string.digits) for _ in range(1,5)])
     return date_string + random_string
 
+@login_required
 def shopping_cart(request):
+    # This can probably be done much cleaner
     title = "shopping-cart"
+    user = get_object_or_404(Profile, user=request.user)
+    # Queryset of cart_items
+    cart_orders = ShoppingCartOrder.objects.filter(owner=user).first()
+    cart = []
+    # Loop through items in queryset
+    for queryset in cart_orders.get_cart_items():
+        # Create a list of items in cart
+        cart.append(queryset.cart_item.name)
     context = {
-        'title': title
+        'title': title,
+        'items_in_cart': cart,
     }
     return render(request, "cart/shopping_cart.html", context)
 
