@@ -53,25 +53,20 @@ def payment_view(request):
     return render(request, "cart/payment.html", context)
 
 
-#TODO: Create add to cart functionality
 @login_required
 def add_to_cart(request, **kwargs):
     profile = get_object_or_404(Profile, user=request.user)
     
     product = Product.objects.filter(id=kwargs.get('id', "")).first()
     order_item, status = ShoppingCartItem.objects.get_or_create(cart_item=product)
-
     user_order, status = ShoppingCartOrder.objects.get_or_create(owner=profile, ordered=True)
     user_order.cart_items.add(order_item)
-    # Make an order code generator
     if status:
         user_order.order_code = generate_order_id()
         user_order.save()
     messages.success(request, "Added to cart")
-    # Create urls
     return redirect(reverse('store-page'))
 
-#TODO: Create remove from cart functionality
 @login_required
 def remove_from_cart(request, id):
     remove_item = ShoppingCartItem.objects.filter(id=id)
