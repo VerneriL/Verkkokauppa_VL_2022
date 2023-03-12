@@ -78,4 +78,6 @@ def remove_from_cart(request, id):
     if remove_item.exists():
         remove_item[0].delete()
         messages.success(request, "Removed from cart")
-    return redirect(reverse('shopping-cart'))
+    else:
+        messages.warning(request, 'Removal failed')
+    return redirect(reverse('shopping-cart-page'))
