@@ -9,7 +9,7 @@ class ShoppingCartItem(models.Model):
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.cart_item.name
+        return self.cart_item
 
 class ShoppingCartOrder(models.Model):
     order_code = models.CharField(max_length=20)
@@ -19,14 +19,13 @@ class ShoppingCartOrder(models.Model):
     date_ordered = models.DateTimeField(auto_now=True)
 
     def get_cart_items(self):
-        all_items = self.cart_items.all()
-        return all_items
-
+        return self.cart_items.all()
+        
     def cart_sum(self):
         return sum([item.cart_item.price for item in self.cart_items.all()])
 
     def __str__(self):
-        return f"{self.cart_items.all()}"
+        return f"{self.owner}"
 
 
 class Payment(models.Model):
