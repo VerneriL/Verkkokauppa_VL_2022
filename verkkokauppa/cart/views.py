@@ -20,19 +20,18 @@ def generate_order_id():
 
 @login_required
 def shopping_cart(request):
-    # This can probably be done much cleaner
-    title = "shopping-cart"
     user = get_object_or_404(Profile, user=request.user)
-    # Queryset of cart_items
-    cart_orders = ShoppingCartOrder.objects.filter(owner=user).first()
-    cart = []
-    # Loop through items in queryset
-    for queryset in cart_orders.get_cart_items():
-        # Create a list of items in cart
-        cart.append(queryset.cart_item.name)
+    cart_orders = ShoppingCartOrder.objects.filter(owner=user)
+    if cart_orders.exists():
+        return cart_orders[0]
+    return 0
+
+@login_required
+def order_details(request, **kwargs):
+    existing_order = shopping_cart(request)
     context = {
-        'title': title,
-        'items_in_cart': cart,
+        'title': 'shopping-cart',
+        'order': existing_order
     }
     return render(request, "cart/shopping_cart.html", context)
 
