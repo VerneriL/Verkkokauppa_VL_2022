@@ -5,8 +5,7 @@
 <h3>
     Here you can select from our wonderful breeds!
 </h3>
-<br/>
-<h4>Breeds:</h4>
+<hr>
 <div class="s-rem">
     <!-- Loop through categories and display each one-->
   {% if categories %}       
@@ -21,7 +20,6 @@
       </div>
     </div>
     <br>
-    <a href="{% url 'add_to_cart' category.id %}" class="btn">Add to cart</button>
     {% endfor %}
   {% else %}
         <p>Nothing to show!</p>

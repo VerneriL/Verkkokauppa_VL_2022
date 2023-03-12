@@ -4,19 +4,20 @@
 <h1>{{ products.first.product_category }}<h1>
   {% for product in products %}
     <div class="s-rem">
-      <img src="{{ product.image.url }}">
-        <div class="product-description">
-            Name: {{ product }}
+      <div class="card" style="width: 30rem;">
+      <img src="{{ product.image.url }}" class="card-img-top">
+        <div class="product-description card-body">
+            <h5 class="card-title">Name: {{ product }}</h5>
             <br>
             Price: {{ product.price|floatformat:2 }} €
             <br>Breed: {{ product.product_category }}
             <br>Age: {{ product.age }}
             <p>
-            <br>    
             Description: {{ product.description }}
             </p>
-            <button type="submit" class="add-to-cart">Add to cart</button>
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to cart</a>
         </div>
+      </div>
     </div>
     {% endfor %}
 {% endblock content %}
