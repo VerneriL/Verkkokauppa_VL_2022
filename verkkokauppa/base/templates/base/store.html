@@ -12,12 +12,13 @@
   {% if categories %}       
     {% for category in categories %}
     <div class="card">
+      <div class="card-body">
       <a href="{% url 'product-page' category.id %}">
       <!--Show category pic from category db table as url-->
-        <img src="{{ category.image.url }}">
-      </a>
-      <a href="{% url 'product-page' category.id %}"><p>Click here to browse the category: {{ category }}</p></a>
+        <img src="{{ category.image.url }}"></a>
       <p>{{ category.description }}</p>
+      <a href="{% url 'product-page' category.id %}"><button class="btn btn-info">Browse: {{ category }}</button></a>
+      </div>
     </div>
     <br>
     <a href="{% url 'add_to_cart' category.id %}" class="btn">Add to cart</button>
