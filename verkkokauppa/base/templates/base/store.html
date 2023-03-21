@@ -2,14 +2,14 @@
 {% block content %}
 <h1>MyCompany Store</h1>
 <br/>
-<h3>
-    Here you can select from our wonderful breeds!
-</h3>
-<hr>
+<br/>
 <div class="s-rem">
     <!-- Loop through categories and display each one-->
-  {% if categories %}
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-xl-4"> 
+  {% if categories %}       
+    <h3>
+      Here you can select from our wonderful breeds!
+    </h3>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-xl-4">
     {% for category in categories %}
     <div class="col">
     <div class="card">
