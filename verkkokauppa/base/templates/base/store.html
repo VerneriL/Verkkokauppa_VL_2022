@@ -8,10 +8,12 @@
 <hr>
 <div class="s-rem">
     <!-- Loop through categories and display each one-->
-  {% if categories %}       
+  {% if categories %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-xl-4"> 
     {% for category in categories %}
+    <div class="col">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body ">
       <a href="{% url 'product-page' category.id %}">
       <!--Show category pic from category db table as url-->
         <img src="{{ category.image.url }}"></a>
@@ -20,7 +22,9 @@
       </div>
     </div>
     <br>
+    </div>
     {% endfor %}
+    </div>
   {% else %}
         <p>Nothing to show!</p>
   {% endif %}
