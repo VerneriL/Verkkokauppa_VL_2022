@@ -2,5 +2,18 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Shopping-cart page</h1>
+</br>
+<div class="card" style="">
+    <div class="card-header">My cart</div>
+    <ul class="list-group list-group-flush">
+    {% for item in order.get_cart_items %}
+        <li class="list-group-item">{{item.cart_item.name}}: {{item.cart_item.price}}€
+            <a href="{% url 'remove_from_cart' item.id %}"><button class="btn btn-warning float-right">Remove from cart</button></a>
+        </li>
+    {% endfor %}
+    </ul>
+    </div>
+    Cart total: {{order.cart_sum}}€
+    <a href="#"><button class="btn btn-info">Proceed to pay</button>
+</div>    
 {% endblock content %}

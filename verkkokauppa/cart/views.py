@@ -1,13 +1,37 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.urls import reverse
+
 from .forms import PaymentForm
+from users.models import Profile
+from base.models import Product
+from .models import ShoppingCartItem, ShoppingCartOrder
 
+import random
+import string
+from datetime import date
+import datetime
 
+def generate_order_id():
+    date_string = date.today().strftime('%Y%m%d')[2:] + str(datetime.datetime.now().second)
+    random_string = "".join([random.choice(string.digits) for _ in range(1,5)])
+    return date_string + random_string
+
+@login_required
 def shopping_cart(request):
-    title = "shopping-cart"
+    user = get_object_or_404(Profile, user=request.user)
+    cart_orders = ShoppingCartOrder.objects.filter(owner=user)
+    if cart_orders.exists():
+        return cart_orders[0]
+    return 0
+
+@login_required
+def order_details(request, **kwargs):
+    existing_order = shopping_cart(request)
     context = {
-        'title': title
+        'title': 'shopping-cart',
+        'order': existing_order
     }
     return render(request, "cart/shopping_cart.html", context)
 
@@ -29,12 +53,26 @@ def payment_view(request):
     return render(request, "cart/payment.html", context)
 
 
-#TODO: Create add to cart functionality
 @login_required
-def add_to_cart(request):
+def add_to_cart(request, **kwargs):
+    profile = get_object_or_404(Profile, user=request.user)
+    
+    product = Product.objects.filter(id=kwargs.get('id', "")).first()
+    order_item, status = ShoppingCartItem.objects.get_or_create(cart_item=product)
+    user_order, status = ShoppingCartOrder.objects.get_or_create(owner=profile, ordered=True)
+    user_order.cart_items.add(order_item)
+    if status:
+        user_order.order_code = generate_order_id()
+        user_order.save()
     messages.success(request, "Added to cart")
+    return redirect(reverse('store-page'))
 
-#TODO: Create remove from cart functionality
 @login_required
-def remove_from_cart(request):
-    messages.success(request, "Removed from cart")
+def remove_from_cart(request, id):
+    remove_item = ShoppingCartItem.objects.filter(id=id)
+    if remove_item.exists():
+        remove_item[0].delete()
+        messages.success(request, "Removed from cart")
+    else:
+        messages.warning(request, 'Removal failed')
+    return redirect(reverse('shopping-cart-page'))

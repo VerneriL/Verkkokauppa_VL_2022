@@ -9,18 +9,22 @@
     <h3>
       Here you can select from our wonderful breeds!
     </h3>
-
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-xl-4">
     {% for category in categories %}
-      <div>
-        <a href="{% url 'product-page' category.id %}">
-        <!--Show category pic from category db table as url-->
-          <img src="{{ category.image.url }}">
-        </a>
-        <a href="{% url 'product-page' category.id %}"><p>Click here to browse the category: {{ category }}</p></a>
-        <p>{{ category.description }}</p>
+    <div class="col">
+    <div class="card">
+      <div class="card-body ">
+      <a href="{% url 'product-page' category.id %}">
+      <!--Show category pic from category db table as url-->
+        <img src="{{ category.image.url }}"></a>
+      <p>{{ category.description }}</p>
+      <a href="{% url 'product-page' category.id %}"><button class="btn btn-info">Browse: {{ category }}</button></a>
       </div>
-      <br>
+    </div>
+    <br>
+    </div>
     {% endfor %}
+    </div>
   {% else %}
         <p>Nothing to show!</p>
   {% endif %}

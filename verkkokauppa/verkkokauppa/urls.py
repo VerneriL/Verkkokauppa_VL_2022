@@ -31,8 +31,10 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout-page'),
     path('profile/update/', user_views.update, name='update-page'),
     path('contact_us/', user_views.contact, name='contact-page'),
-    path('shopping-cart/', cart_views.shopping_cart, name='shopping-cart-page'),
+    path('shopping-cart/', cart_views.order_details, name='shopping-cart-page'),
     path('payment/', cart_views.payment_view, name='payment-page'),
+    path('add-to-cart/<int:id>', cart_views.add_to_cart, name='add_to_cart'),
+    path('remove-from-cart/<int:id>', cart_views.remove_from_cart, name='remove_from_cart'),
     path('', include('base.urls')),
 ]
 
