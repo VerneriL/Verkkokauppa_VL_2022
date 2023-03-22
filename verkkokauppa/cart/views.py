@@ -21,7 +21,7 @@ def generate_order_id():
 @login_required
 def shopping_cart(request):
     user = get_object_or_404(Profile, user=request.user)
-    cart_orders = ShoppingCartOrder.objects.filter(owner=user)
+    cart_orders = ShoppingCartOrder.objects.filter(owner=user, ordered=False)
     if cart_orders.exists():
         return cart_orders[0]
     return 0
@@ -42,6 +42,7 @@ def payment_view(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Payment successful')
+            #TODO: PAYMENT PROCESSED PAGE
             return redirect('home-page')
     else:
         form = PaymentForm()
@@ -59,7 +60,7 @@ def add_to_cart(request, **kwargs):
     
     product = Product.objects.filter(id=kwargs.get('id', "")).first()
     order_item, status = ShoppingCartItem.objects.get_or_create(cart_item=product)
-    user_order, status = ShoppingCartOrder.objects.get_or_create(owner=profile, ordered=True)
+    user_order, status = ShoppingCartOrder.objects.get_or_create(owner=profile, ordered=False)
     user_order.cart_items.add(order_item)
     if status:
         user_order.order_code = generate_order_id()
@@ -76,3 +77,34 @@ def remove_from_cart(request, id):
     else:
         messages.warning(request, 'Removal failed')
     return redirect(reverse('shopping-cart-page'))
+
+@login_required
+def process_payment(request, order_id):
+    return redirect(reverse('update_transaction_records', kwargs={
+        'order_id': order_id,
+    }))
+
+@login_required
+def checkout(request):
+    existing_order = shopping_cart(request)
+    context = {
+        'title': 'checkout',
+        'order': existing_order
+    }
+    return render(request, "cart/checkout.html", context)
+
+#TODO: UPDATE TRANSACTION RECORDS
+@login_required
+def update_transaction_records(request, order_id):
+    order_to_purchase = ShoppingCartOrder.objects.filter(pk=order_id).first()
+
+    order_to_purchase.ordered = True
+    order_to_purchase.date_ordered = datetime.datetime.now()
+    order_to_purchase.save()
+
+    order_items = order_to_purchase.cart_items.all()
+
+    order_items.update(ordered=True, date_ordered=datetime.datetime.now())
+
+    messages.info(request, 'Thank you for your purchase!')
+    return redirect(reverse('store-page'))
