@@ -37,11 +37,12 @@ urlpatterns = [
     path('add-to-cart/<int:id>', cart_views.add_to_cart, name='add_to_cart'),
     path('remove-from-cart/<int:id>', cart_views.remove_from_cart, 
          name='remove_from_cart'),
-    path('shopping-cart/payment/', cart_views.payment_view, name='payment-page'),
+    path('shopping-cart/payment/<int:order_id>', cart_views.process_payment, name='payment-page'),
     path('shopping-cart/checkout/', cart_views.checkout, name='checkout-page'),
     path('shoppingcart/update-transaction/<int:order_id>', 
          cart_views.update_transaction_records, 
-         name='update_transaction_records'),
+         name='update-transaction-records'),
+    path('payment-processed/', cart_views.payment_processed, name="payment-processed"),
     path('', include('base.urls')),
 ]
 

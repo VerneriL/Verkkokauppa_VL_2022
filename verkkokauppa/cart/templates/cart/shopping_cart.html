@@ -15,7 +15,7 @@
         </ul>
         </div>
         Cart total: {{order.cart_sum}}€
-        <a href="{% url 'payment-page' %}"><button class="btn btn-info">Proceed to pay</button>
+        <a href="{% url 'checkout-page' %}"><button class="btn btn-info">Proceed to Checkout</button>
     {% else %}
         <li class="list-group-item">Cart is empty, you can add to cart from
             <a href="{% url 'store-page' %}">Store</a>
