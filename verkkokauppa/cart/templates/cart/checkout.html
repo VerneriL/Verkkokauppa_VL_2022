@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="card">
+        <div class="card-header">Order summary</div>
+        <ul class="list-group list-group-flush">
+            {% if order.get_cart_items %}
+                {% for item in order.get_cart_items %}
+                    <li class="list-group-item">{{item.cart_item.name}}: {{item.cart_item.price}}€
+                        <img src="{{ item.cart_item.image.url }}" style="width: 50px; height: 50px;">
+                    </li>
+                {% endfor %}
+        </ul>
+                Cart total: {{order.cart_sum}}€        
+                <a href="{% url 'payment-page' order.id %}">
+                    <button class="btn btn-primary">
+                        Pay
+                    </button>
+                </a>
+            {% endif %}    
+    </div>
+{% endblock content%}
