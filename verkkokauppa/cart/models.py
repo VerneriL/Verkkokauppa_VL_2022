@@ -39,5 +39,4 @@ class Payment(models.Model):
     card_exp_month = models.CharField(max_length=2)
     card_exp_year = models.CharField(max_length=2)
     card_ccs = models.CharField(max_length=3)
-    payment_date = models.DateTimeField(editable=False)
-    payment_number = models.IntegerField(editable=False)
+    payment_date = models.DateTimeField(auto_now=True)
