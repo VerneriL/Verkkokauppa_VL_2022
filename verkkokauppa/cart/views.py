@@ -35,23 +35,23 @@ def order_details(request, **kwargs):
     }
     return render(request, "cart/shopping_cart.html", context)
 
-@login_required
-def payment_view(request):
-    if request.method == 'POST':
-        form = PaymentForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Payment successful')
-            #TODO: PAYMENT PROCESSED PAGE
-            return redirect('home-page')
-    else:
-        form = PaymentForm()
-    title = "payment"
-    context = {
-        'form': form,
-        'title': title
-    }
-    return render(request, "cart/payment.html", context)
+# @login_required
+# def payment_view(request):
+#     if request.method == 'POST':
+#         form = PaymentForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Payment successful')
+#             #TODO: PAYMENT PROCESSED PAGE
+#             return redirect('home-page')
+#     else:
+#         form = PaymentForm()
+#     title = "payment"
+#     context = {
+#         'form': form,
+#         'title': title
+#     }
+#     return render(request, "cart/payment.html", context)
 
 
 @login_required
@@ -80,7 +80,7 @@ def remove_from_cart(request, id):
 
 @login_required
 def process_payment(request, order_id):
-    return redirect(reverse('update_transaction_records', kwargs={
+    return redirect(reverse('update-transaction-records', kwargs={
         'order_id': order_id,
     }))
 
@@ -93,7 +93,10 @@ def checkout(request):
     }
     return render(request, "cart/checkout.html", context)
 
-#TODO: UPDATE TRANSACTION RECORDS
+@login_required
+def payment_processed(request):
+    return render(request, "cart/payment_processed.html")
+
 @login_required
 def update_transaction_records(request, order_id):
     order_to_purchase = ShoppingCartOrder.objects.filter(pk=order_id).first()
@@ -104,7 +107,7 @@ def update_transaction_records(request, order_id):
 
     order_items = order_to_purchase.cart_items.all()
 
-    order_items.update(ordered=True, date_ordered=datetime.datetime.now())
+    order_items.update(ordered=True)
 
     messages.info(request, 'Thank you for your purchase!')
-    return redirect(reverse('store-page'))
+    return redirect(reverse('payment-processed'))

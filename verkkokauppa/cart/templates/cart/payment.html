@@ -8,7 +8,9 @@
         <fieldset>
             {{ form|crispy }}
         </fieldset>
-    <button class="btn btn-outline-success" type="submit">Pay</button>    
+    <a href="{% url 'update-transaction-records' id %}">
+        <button class="btn btn-outline-success" type="submit">Pay</button>
+    </a>
     </form>
     <a href="{% url 'shopping-cart-page' %}">Return to cart</a>
 {% endblock content %}
