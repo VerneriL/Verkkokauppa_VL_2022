@@ -27,16 +27,3 @@ class ShoppingCartOrder(models.Model):
     def __str__(self):
         return f"{self.owner}"
 
-
-class Payment(models.Model):
-    name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    address = models.CharField(max_length=100)
-    post_code = models.CharField(max_length=10)
-    post_address = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
-    card_number = models.CharField(max_length=12)
-    card_exp_month = models.CharField(max_length=2)
-    card_exp_year = models.CharField(max_length=2)
-    card_ccs = models.CharField(max_length=3)
-    payment_date = models.DateTimeField(auto_now=True)

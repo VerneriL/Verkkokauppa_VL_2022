@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.urls import reverse
 
-from .forms import PaymentForm
 from users.models import Profile
 from base.models import Product
 from .models import ShoppingCartItem, ShoppingCartOrder
@@ -34,24 +33,6 @@ def order_details(request, **kwargs):
         'order': existing_order
     }
     return render(request, "cart/shopping_cart.html", context)
-
-# @login_required
-# def payment_view(request):
-#     if request.method == 'POST':
-#         form = PaymentForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Payment successful')
-#             #TODO: PAYMENT PROCESSED PAGE
-#             return redirect('home-page')
-#     else:
-#         form = PaymentForm()
-#     title = "payment"
-#     context = {
-#         'form': form,
-#         'title': title
-#     }
-#     return render(request, "cart/payment.html", context)
 
 
 @login_required
