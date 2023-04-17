@@ -57,7 +57,7 @@ def contact(request):
         if feedback_form.is_valid():
             feedback_form.save()
             messages.success(request, f'Thank you for your feedback!')
-            return redirect('profile-page')
+            return redirect('home-page')
     else:
         feedback_form = FeedBackForm()
     context = {
