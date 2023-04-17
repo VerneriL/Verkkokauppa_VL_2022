@@ -9,7 +9,7 @@ class ShoppingCartItem(models.Model):
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.cart_item
+        return f'{self.cart_item.name}, {self.cart_item.price}'
 
 class ShoppingCartOrder(models.Model):
     order_code = models.CharField(max_length=20)
