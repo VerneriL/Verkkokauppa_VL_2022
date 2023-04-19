@@ -7,6 +7,7 @@ from .models import Profile
 
 # Signals when a button is pressed for a given form
 
+# Create a profile for a user automatically
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:

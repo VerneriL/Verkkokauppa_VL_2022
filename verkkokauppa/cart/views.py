@@ -14,12 +14,18 @@ import datetime
 
 
 def generate_order_id():
+    """Generate a random string of type: (str) date(now) + type: (str) date(now(seconds)) + random string
+
+    Returns:
+        str: generated id
+    """
     date_string = date.today().strftime('%Y%m%d')[2:] + str(datetime.datetime.now().second)
     random_string = "".join([random.choice(string.digits) for _ in range(1,5)])
     return date_string + random_string
 
 @login_required
 def shopping_cart(request):
+    # Gets users current order if exists
     user = get_object_or_404(Profile, user=request.user)
     cart_orders = ShoppingCartOrder.objects.filter(owner=user, ordered=False)
     if cart_orders.exists():
@@ -28,6 +34,7 @@ def shopping_cart(request):
 
 @login_required
 def order_details(request, **kwargs):
+    # Calls shopping_cart method to then render to html
     existing_order = shopping_cart(request)
     context = {
         'title': 'shopping-cart',
@@ -41,7 +48,9 @@ def add_to_cart(request, **kwargs):
     profile = get_object_or_404(Profile, user=request.user)
     
     product = Product.objects.filter(id=kwargs.get('id', "")).first()
+    # Gets and/or creates a ShoppingCartItem object with Product object
     order_item, status = ShoppingCartItem.objects.get_or_create(cart_item=product)
+    # Gets users order that has not been ordered yet
     user_order, status = ShoppingCartOrder.objects.get_or_create(owner=profile, ordered=False)
     user_order.cart_items.add(order_item)
     if status:
@@ -62,6 +71,7 @@ def remove_from_cart(request, id):
 
 @login_required
 def process_payment(request, order_id):
+    # Passes order_id on to update_transaction_records
     return redirect(reverse('update-transaction-records', kwargs={
         'order_id': order_id,
     }))
@@ -82,6 +92,8 @@ def payment_processed(request):
 
 @login_required
 def update_transaction_records(request, order_id):
+    # Gets current order, saves date of order placed and updates
+    # ordered=True
     order_to_purchase = ShoppingCartOrder.objects.filter(pk=order_id).first()
 
     order_to_purchase.ordered = True
