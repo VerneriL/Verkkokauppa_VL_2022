@@ -6,14 +6,20 @@
 <div class="card" style="">
     <div class="card-header">My cart</div>
     <ul class="list-group list-group-flush">
-    {% for item in order.get_cart_items %}
-        <li class="list-group-item">{{item.cart_item.name}}: {{item.cart_item.price}}€
-            <a href="{% url 'remove_from_cart' item.id %}"><button class="btn btn-warning float-right">Remove from cart</button></a>
+    {% if order.get_cart_items %}
+        {% for item in order.get_cart_items %}
+            <li class="list-group-item">{{item.cart_item.name}}: {{item.cart_item.price}}€
+                <a href="{% url 'remove_from_cart' item.id %}"><button class="btn btn-warning float-right">Remove from cart</button></a>
+            </li>
+        {% endfor %}
+        </ul>
+        </div>
+        Cart total: {{order.cart_sum}}€
+        <a href="{% url 'checkout-page' %}"><button class="btn btn-info">Proceed to Checkout</button>
+    {% else %}
+        <li class="list-group-item">Cart is empty, you can add to cart from
+            <a href="{% url 'store-page' %}">Store</a>
         </li>
-    {% endfor %}
-    </ul>
-    </div>
-    Cart total: {{order.cart_sum}}€
-    <a href="#"><button class="btn btn-info">Proceed to pay</button>
-</div>    
+</div>
+    {% endif %}
 {% endblock content %}

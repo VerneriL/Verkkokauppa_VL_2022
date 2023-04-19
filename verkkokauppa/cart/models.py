@@ -9,7 +9,7 @@ class ShoppingCartItem(models.Model):
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.cart_item
+        return f'{self.cart_item.name}, {self.cart_item.price}'
 
 class ShoppingCartOrder(models.Model):
     order_code = models.CharField(max_length=20)
@@ -27,17 +27,3 @@ class ShoppingCartOrder(models.Model):
     def __str__(self):
         return f"{self.owner}"
 
-
-class Payment(models.Model):
-    name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    address = models.CharField(max_length=100)
-    post_code = models.CharField(max_length=10)
-    post_address = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
-    card_number = models.CharField(max_length=12)
-    card_exp_month = models.CharField(max_length=2)
-    card_exp_year = models.CharField(max_length=2)
-    card_ccs = models.CharField(max_length=3)
-    payment_date = models.DateTimeField(editable=False)
-    payment_number = models.IntegerField(editable=False)
