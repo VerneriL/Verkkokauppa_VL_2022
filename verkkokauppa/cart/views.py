@@ -12,6 +12,7 @@ import string
 from datetime import date
 import datetime
 
+
 def generate_order_id():
     date_string = date.today().strftime('%Y%m%d')[2:] + str(datetime.datetime.now().second)
     random_string = "".join([random.choice(string.digits) for _ in range(1,5)])
@@ -74,6 +75,7 @@ def checkout(request):
     }
     return render(request, "cart/checkout.html", context)
 
+# This could be included in other views instead of being separate
 @login_required
 def payment_processed(request):
     return render(request, "cart/payment_processed.html")
