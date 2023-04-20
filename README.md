@@ -1,8 +1,8 @@
 # Django Verkkokauppa
 Verkkokauppasovellus toteutettu Django-frameworkilla
 
-Python 3.9.3
-Django 4.0.5
+- Python 3.9.3
+- Django 4.0.5
 
 ## Ominaisuudet
 * Login/logout
