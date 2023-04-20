@@ -15,7 +15,13 @@
             <p>
             Description: {{ product.description }}
             </p>
-            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to cart</a>
+
+            {% if product.id not in in_cart %}
+              <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to cart</a>
+            {% else %}
+              Already in cart
+            {% endif %}
+
         </div>
       </div>
     </div>
