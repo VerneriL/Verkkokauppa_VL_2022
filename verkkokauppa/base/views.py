@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from .models import Categories, Product
 from cart.models import ShoppingCartOrder
 from users.models import Profile
@@ -30,19 +30,13 @@ def about(request):
     }    
     return render(request, 'base/about.html', context)
 
-# Profile page
-def account(request):
-    context = {
-        'title': 'Account',
-    }    
-    return render(request, 'base/account.html', context)
-
-
+@login_required
 def products(request, category_id):
     in_cart_list=[]
     # Get category id from database based on given parameter
     products_id = Product.objects.filter(product_category=category_id)
     # Get all products of the same category
+
     profile = get_object_or_404(Profile, user=request.user)
     order = ShoppingCartOrder.objects.filter(owner=profile, ordered=False).first()
     # Create cart_item_id list to check if product is already in cart
