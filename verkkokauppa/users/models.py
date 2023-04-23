@@ -9,7 +9,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
+    # Remove when deploying
     def save(self, *args, **kwargs):
         super(Profile,self).save(*args, **kwargs)
         # Resize and save the profile image
