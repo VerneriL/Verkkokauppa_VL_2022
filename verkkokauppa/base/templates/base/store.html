@@ -9,7 +9,6 @@
     <h4>
       Here you can select from our wonderful breeds!
       <br/>
-      If you wish to browse or buy one, <a href="{% url 'register-page' %}">register</a> an account or <a href="{% url 'login-page' %}">log in</a>
     </h4>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2 g-xl-4">
     {% for category in categories %}
@@ -23,6 +22,11 @@
       <!--Only show if user has an account-->
       {% if user.is_authenticated %}
       <a href="{% url 'product-page' category.id %}"><button class="btn btn-info">Browse: {{ category }}</button></a>
+      {% else %}
+      <small>If you wish to browse or buy one, 
+        <a href="{% url 'register-page' %}">register</a> an account or 
+        <a href="{% url 'login-page' %}">log in</a>
+      </small>
       {% endif %}
       </div>
     </div>
